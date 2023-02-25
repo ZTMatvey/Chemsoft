@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Foreground="red" Text="ЗДЕСЬ МОГЛА БЫ БЫТЬ ВАША РЕКЛАМА" FontWeight="UltraBlack" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Foreground="white" Text="СПЕЦИАЛЬНО ДЛЯ CHEMSOFT" FontWeight="UltraBlack" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

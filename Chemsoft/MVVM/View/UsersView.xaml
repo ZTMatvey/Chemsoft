@@ -5,18 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:Chemsoft.MVVM.ViewModel"
              xmlns:local="clr-namespace:Chemsoft.MVVM.View"
+             xmlns:validationrules="clr-namespace:Chemsoft.Core.Rules"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Users}">
+    <Grid Loaded="UsersView_Loaded">
+        <DataGrid CellEditEnding="dtUsers_CellEditEnding" SelectionChanged="dtUsers_SelectionChanged" Name="dtUsers" CurrentCellChanged="DataGrid_CurrentCellChanged" AutoGenerateColumns="False" CanUserAddRows="True" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding Path=Age}" Header="Age"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Id}" Header="ID"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
                 <DataGridTextColumn Binding="{Binding Path=FirstName}" Header="First Name"/>
                 <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Last Name"/>
             </DataGrid.Columns>
+
+            <DataGrid.RowValidationRules>
+                <validationrules:MinimumCharactersRule MinimumCharacters="5"/>
+            </DataGrid.RowValidationRules>
         </DataGrid>
     </Grid>
 </UserControl>

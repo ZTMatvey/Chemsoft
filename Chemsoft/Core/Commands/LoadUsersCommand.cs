@@ -1,13 +1,8 @@
-﻿using Chemsoft.Core;
-using Chemsoft.MVVM.Model;
+﻿using Chemsoft.MVVM.Model;
 using Chemsoft.MVVM.ViewModel;
 using Chemsoft_DB;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Chemsoft.Core.Commands
@@ -30,30 +25,21 @@ namespace Chemsoft.Core.Commands
 
         public async void Execute(object? parameter)
         {
-            string connectionString = "Data Source=DESKTOP-BGRF52O;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;";
-            var context = new Context(connectionString);
-            await context.Connect();
-            var reader = await context.GetReaderAsync("SELECT * FROM Users");
-
-            List<User> users = new();
-
-            while (await reader.ReadAsync())
+            var context = new Context("Data Source=DESKTOP-BGRF52O;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;");
+            await context.ExecuteReaderAsync("SELECT * FROM Users", async reader =>
             {
-                object id = reader.GetValue(0);
-                object age = reader.GetValue(1);
-                object firstName = reader.GetValue(2);
-                object lastName = reader.GetValue(3);
+                List<UserModel> users = new();
 
-                _viewModel.Users.Add(new User()
+                while (await reader.ReadAsync())
                 {
-                    Id = Convert.ToInt32(id),
-                    Age = Convert.ToInt32(age),
-                    FirstName = firstName?.ToString() ?? "",
-                    LastName = lastName?.ToString() ?? ""
-                });
-            }
+                    object id = reader.GetValue(0);
+                    object age = reader.GetValue(1);
+                    object firstName = reader.GetValue(2);
+                    object lastName = reader.GetValue(3);
 
-            await context.Disconnect();
+                    _viewModel?.Users?.Add(new UserModel(firstName.ToString(), lastName.ToString(), 5));
+                }
+            });
         }
     }
 }

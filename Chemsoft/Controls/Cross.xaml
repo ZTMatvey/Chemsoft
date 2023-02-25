@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Chemsoft.Controls.Cross"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chemsoft.Controls"
+             mc:Ignorable="d"
+             x:Name="root"
+             d:DesignHeight="150" d:DesignWidth="150">
+
+    <Grid Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Border x:Name="first" Width="{Binding CrossWidthProperty, ElementName=root}" Height="{Binding CrossHeightProperty, ElementName=root}" Background="{Binding CrossColor, ElementName=root}" CornerRadius="15"/>
+        <Border x:Name="second"  Width="{Binding CrossHeightProperty, ElementName=root}" Height="{Binding CrossWidthProperty, ElementName=root}" Background="{Binding CrossColor, ElementName=root}" CornerRadius="15"/>
+    </Grid>
+</UserControl>

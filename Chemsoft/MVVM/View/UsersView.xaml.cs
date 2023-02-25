@@ -1,18 +1,9 @@
-﻿using Chemsoft.MVVM.ViewModel;
+﻿using Chemsoft.MVVM.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Chemsoft.MVVM.View
 {
@@ -30,16 +21,49 @@ namespace Chemsoft.MVVM.View
         public static readonly DependencyProperty LoadCommandProperty =
             DependencyProperty.Register("LoadCommand", typeof(ICommand), typeof(UsersView), new PropertyMetadata(null));
 
+        public ICommand UserCellEditEnding
+        {
+            get { return (ICommand)GetValue(CellEditEndingProperty); }
+            set { SetValue(CellEditEndingProperty, value); }
+        }
+
+        public static readonly DependencyProperty CellEditEndingProperty =
+            DependencyProperty.Register("UserCellEditEnding", typeof(ICommand), typeof(UsersView), new PropertyMetadata(null));
+
+        public ICommand CreateInfoCommand
+        {
+            get { return (ICommand)GetValue(CreateInfoCommandProperty); }
+            set { SetValue(CreateInfoCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty CreateInfoCommandProperty =
+            DependencyProperty.Register("CreateInfoCommand", typeof(ICommand), typeof(UsersView), new PropertyMetadata(null));
+
         public UsersView()
         {
             InitializeComponent();
-            Loaded += UsersView_Loaded;
         }
 
         private void UsersView_Loaded(object sender, RoutedEventArgs e)
         {
             LoadCommand?.Execute(null);
-            var s = DataContext;
+        }
+        private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var user = dtUsers.SelectedItem as UserModel;
+            if (dtUsers.SelectedItem is not UserModel userr) return;
+
+            UserCellEditEnding?.Execute(user);
+        }
+
+        private void dtUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("start");
+        }
+
+        private void dtUsers_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            MessageBox.Show("atop");
         }
     }
 }
