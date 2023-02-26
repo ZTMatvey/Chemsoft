@@ -3,19 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Chemsoft"
              xmlns:viewModel="clr-namespace:Chemsoft.MVVM.ViewModel"
-             xmlns:view="clr-namespace:Chemsoft.MVVM.View"
+             xmlns:view="clr-namespace:Chemsoft.MVVM.View" 
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Menu.xaml"/>
+                <ResourceDictionary Source="Theme/Confirm.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:CloseViewModel}">
-                <view:CloseView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
                 <view:UsersView LoadCommand="{Binding LoadUsersCommand}" CreateInfoCommand="{Binding CreateInfoCommand}" UserCellEditEnding="{Binding UserCellEditEnding}"/>

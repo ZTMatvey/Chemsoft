@@ -8,6 +8,7 @@ using System.Collections;
 
 namespace Chemsoft.Core.Commands
 {
+    [Obsolete]
     internal class UpdateInfoCommand : ICommand
     {
         private UsersViewModel _viewModel;

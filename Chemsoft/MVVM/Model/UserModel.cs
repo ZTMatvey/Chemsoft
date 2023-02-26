@@ -8,11 +8,12 @@
 
         public int Age { get; set; }
 
-        public UserModel(string? lastName, string? firstName, int age)
+        public UserModel(ulong id, string? lastName, string? firstName, int age)
         {
             LastName = lastName;
             FirstName = firstName;
             Age = age;
+            ID = id;
         }
 
         public UserModel Clone()

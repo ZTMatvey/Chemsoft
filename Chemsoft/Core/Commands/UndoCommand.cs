@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Chemsoft.Core.Commands
 {
-    [Obsolete]
-    internal class CloseCommand : ICommand
+    internal sealed class UndoCommand : ICommand
     {
+        private UserControl _closeControl;
+
         public event EventHandler? CanExecuteChanged;
+
+        public UndoCommand(UserControl closeControl)
+        {
+            _closeControl = closeControl;
+        }
 
         public bool CanExecute(object? parameter)
         {
@@ -20,9 +26,9 @@ namespace Chemsoft.Core.Commands
 
         public void Execute(object? parameter)
         {
-            if (parameter == null || parameter is not Window window) return;
+            if (parameter is not UserControl control) return;
 
-            window.Close();
+            _closeControl.Content = control.Content;
         }
     }
 }

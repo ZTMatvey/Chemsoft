@@ -6,6 +6,7 @@ using System.Windows.Input;
 
 namespace Chemsoft.Core.Commands
 {
+    [Obsolete]
     internal sealed class CreateInfoCommand : ICommand
     {
         private UsersViewModel _viewModel;
@@ -26,7 +27,7 @@ namespace Chemsoft.Core.Commands
         {
             if (parameter is null || parameter is not UserModel user) return;
 
-            var context = new Context("Data Source=DESKTOP-BGRF52O;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;");
+            var context = new Context("Data Source=DESKTOP-N3F9INH;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;");
             var query = $"INSERT INTO Users (Age, FirstName, LastName) VALUES ({user.Age}, '{user.FirstName}', '{user.LastName}')";
 
             await context.ExecuteNonQueryAsync(query);

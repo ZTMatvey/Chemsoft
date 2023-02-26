@@ -43,27 +43,5 @@ namespace Chemsoft.MVVM.View
         {
             InitializeComponent();
         }
-
-        private void UsersView_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadCommand?.Execute(null);
-        }
-        private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
-        {
-            var user = dtUsers.SelectedItem as UserModel;
-            if (dtUsers.SelectedItem is not UserModel userr) return;
-
-            UserCellEditEnding?.Execute(user);
-        }
-
-        private void dtUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MessageBox.Show("start");
-        }
-
-        private void dtUsers_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            MessageBox.Show("atop");
-        }
     }
 }

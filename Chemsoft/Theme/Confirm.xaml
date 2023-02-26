@@ -2,27 +2,31 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Style BasedOn="{StaticResource {x:Type Button}}"
-           TargetType="{x:Type RadioButton}"
+           TargetType="{x:Type Button}"
            x:Key="ConfirmButton">
         <Style.Setters>
+            <Setter Property="Foreground" Value="#171520"/>
+            <Setter Property="Background" Value="White"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch"
-                              Background="{TemplateBinding Background}">
-
-                            <TextBlock Text="{TemplateBinding Property=Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="20" BorderThickness="2"
+                                BorderBrush="{TemplateBinding Foreground}">
+                            
+                            <TextBlock FontSize="20" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" 
+                                       Text="{TemplateBinding Property=Content}" 
+                                       Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
         </Style.Setters>
 
         <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Background" Value="#171520"/>
             </Trigger>
         </Style.Triggers>

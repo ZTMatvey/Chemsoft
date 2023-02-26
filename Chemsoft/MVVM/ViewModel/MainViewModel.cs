@@ -1,12 +1,14 @@
 ﻿using Chemsoft.Core;
 using Chemsoft.Core.Commands;
+using Chemsoft.Windows;
+using System;
+using System.Windows;
 
 namespace Chemsoft.MVVM.ViewModel
 {
     internal sealed class MainViewModel : ObservableObject
     {
         private object? _currentView;
-        private object? _previousView;
 
         public object? CurrentView
         {
@@ -14,16 +16,6 @@ namespace Chemsoft.MVVM.ViewModel
             set
             {
                 _currentView = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public object? PreviousUer
-        {
-            get { return _previousView; }
-            set
-            {
-                _previousView = value;
                 OnPropertyChanged();
             }
         }
@@ -38,8 +30,6 @@ namespace Chemsoft.MVVM.ViewModel
 
         public UsersViewModel UsersViewModel { get; set; }
 
-        public CloseViewModel CloseViewModel { get; set; }
-
         public MainViewModel()
         {
             HomeRelayCommand = new(o =>
@@ -49,18 +39,22 @@ namespace Chemsoft.MVVM.ViewModel
             });
             UsersRelayCommand = new(o =>
             {
-                UsersViewModel?.Users?.Clear();
                 UsersViewModel = new();
+                UsersViewModel?.Users?.Clear();
                 CurrentView = UsersViewModel;
             });
-            CloseRelayCommand = new(e =>
+            CloseRelayCommand = new(o =>
             {
-                CloseViewModel = new();
-                CurrentView = CloseViewModel;
+                var confirm = new Confirm();
+                var result = confirm.ShowDialog();
+
+                if (result != null && result.Value)
+                {
+                    App.Current.MainWindow.Close();
+                }
             });
 
             CurrentView = HomeViewModel;
-
         }
     }
 }
