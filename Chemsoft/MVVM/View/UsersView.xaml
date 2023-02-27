@@ -29,7 +29,7 @@
                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding Path=Age}" Header="Возраст"/>
                 <DataGridTextColumn Binding="{Binding Path=FirstName}" Header="Имя"/>
-                <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Фамилияe"/>
+                <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Фамилия"/>
             </DataGrid.Columns>
             
             <DataGrid.RowValidationRules>

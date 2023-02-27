@@ -41,7 +41,7 @@ namespace Chemsoft.Windows
             
             using var context = new Context("Data Source=DESKTOP-N3F9INH;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;");
             await context.Connect();
-            await context.ExecuteNonQueryAsync($"UPDATE Users SET Age={ageTB.Text}, FirstName={fNameTB.Text}, LastName={sNameTB.Text} WHERE ID={_user.ID}");
+            await context.ExecuteNonQueryAsync($"UPDATE Users SET Age={ageTB.Text}, FirstName='{fNameTB.Text}', LastName='{sNameTB.Text}' WHERE ID={_user.ID}");
             DialogResult = true;
         }
 
