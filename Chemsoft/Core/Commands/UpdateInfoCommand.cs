@@ -29,7 +29,7 @@ namespace Chemsoft.Core.Commands
         {
             if (parameter is not UserModel user) return; 
 
-            var expression = $@"UPDATE Users SET {parameter} WHERE Id={user.ID}";
+            var expression = $@"UPDATE Users SET (Age={user.Age}, FirstName={user.FirstName}, LastName={user.LastName}) WHERE Id={user.ID}";
 
             var context = new Context(expression);
 

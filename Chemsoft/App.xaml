@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Menu.xaml"/>
                 <ResourceDictionary Source="Theme/Confirm.xaml"/>
+                <ResourceDictionary Source="Theme/Input.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>

@@ -2,13 +2,50 @@
 {
     internal class UserModel : BaseEntity
     {
-        public string? FirstName { get; set; }
+        private string? _firstName { get; set; }
+        private string? _lastdName { get; set; }
+        private uint _age { get; set; }
 
-        public string? LastName { get; set; }
+        public string? FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(FirstName));
+                _firstName = value;
+            }
+        }
 
-        public int Age { get; set; }
+        public string? LastName
+        {
+            get
+            {
+                return _lastdName;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(LastName));
+                _lastdName = value;
+            }
+        }
 
-        public UserModel(ulong id, string? lastName, string? firstName, int age)
+        public uint Age
+        {
+            get
+            {
+                return _age;
+            }
+            set
+            {
+                OnPropertyChanged(nameof(Age));
+                _age = value;
+            }
+        }
+
+        public UserModel(ulong id, string? lastName, string? firstName, uint age)
         {
             LastName = lastName;
             FirstName = firstName;
@@ -18,7 +55,7 @@
 
         public UserModel Clone()
         {
-            return null;
+            return null;//todo сделать
             //return new UserModel { ID = ID, Age = Age, FirstName = FirstName, LastName = LastName };
         }
     }

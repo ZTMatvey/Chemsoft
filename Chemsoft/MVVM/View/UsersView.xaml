@@ -10,20 +10,36 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <DataGrid  Name="dtUsers"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid  Grid.ColumnSpan="2"
+                   Name="dtUsers"
+                   IsReadOnly="True"
                    AutoGenerateColumns="False"
+                   SelectedItem="{Binding SelectedUser}"
                    CanUserAddRows="True" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ID}" Header="ID"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
-                <DataGridTextColumn Binding="{Binding Path=FirstName}" Header="First Name"/>
-                <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Last Name"/>
+                <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding Path=Age}" Header="Возраст"/>
+                <DataGridTextColumn Binding="{Binding Path=FirstName}" Header="Имя"/>
+                <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Фамилияe"/>
             </DataGrid.Columns>
-
+            
             <DataGrid.RowValidationRules>
                 <validationrules:MinimumCharactersRule MinimumCharacters="5"/>
             </DataGrid.RowValidationRules>
-
         </DataGrid>
+        <!--Command="{Binding UpdateUser}" CommandParameter="{Binding SelectedUser}"-->
+        <Button Click="Button_Click" Content="Редактировать" Style="{StaticResource ConfirmButton}" Margin="10" Grid.Row="1"/>
+        <Button Click="Button_Click_1" Content="Добавить" Style="{StaticResource ConfirmButton}" Margin="10" Grid.Row="1" Grid.Column="1"/>
+        <Button Click="Button_Click_2" Content="Обновить" Style="{StaticResource ConfirmButton}" Margin="10" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <!--<Button Command="{Binding }" CommandParameter="{Binding SelectedUser}" Content="Сохранить" Style="{StaticResource ConfirmButton}" Margin="10" Grid.Row="2"/>-->
     </Grid>
 </UserControl>

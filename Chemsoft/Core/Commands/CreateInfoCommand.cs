@@ -28,7 +28,7 @@ namespace Chemsoft.Core.Commands
             if (parameter is null || parameter is not UserModel user) return;
 
             var context = new Context("Data Source=DESKTOP-N3F9INH;Initial Catalog=Chemsoft;Persist Security Info=True;User ID=sa;Password=sa;");
-            var query = $"INSERT INTO Users (Age, FirstName, LastName) VALUES ({user.Age}, '{user.FirstName}', '{user.LastName}')";
+            var query = $"INSERT INTO Users (Age, IsDeleted, FirstName, LastName) VALUES ({user.Age}, 0, '{user.FirstName}', '{user.LastName}')";
 
             await context.ExecuteNonQueryAsync(query);
         }

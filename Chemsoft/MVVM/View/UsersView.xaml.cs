@@ -1,4 +1,6 @@
 ﻿using Chemsoft.MVVM.Model;
+using Chemsoft.MVVM.ViewModel;
+using Chemsoft.Windows;
 using System;
 using System.Linq;
 using System.Windows;
@@ -42,6 +44,25 @@ namespace Chemsoft.MVVM.View
         public UsersView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtUsers.SelectedValue is not UserModel model) return;
+
+            var editUser = new EditUser(model);
+            editUser.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var editUser = new Create();
+            editUser.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ((UsersViewModel)DataContext).Update();
         }
     }
 }
